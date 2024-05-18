@@ -6,14 +6,16 @@ import bluetooth from "/images/bluetooth.png";
 import charge from "/images/low-battery.png";
 import wifi from "/images/wi-fi.png";
 export default function Header() {
-  const today = new Date();
   const options = {
     day: "numeric",
     month: "long",
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "Europe/Istanbul", // replace with your desired timezone
   };
-  const dateString = today.toLocaleDateString("tr-TR", options);
+
+  const formatter = new Intl.DateTimeFormat("tr-TR", options);
+  const dateString = formatter.format(new Date());
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
