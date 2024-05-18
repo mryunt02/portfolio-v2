@@ -5,17 +5,12 @@ import earphone from "/images/earphone.png";
 import bluetooth from "/images/bluetooth.png";
 import charge from "/images/low-battery.png";
 import wifi from "/images/wi-fi.png";
+import moment from "moment-timezone";
+import "moment/locale/tr";
 export default function Header() {
-  const options = {
-    day: "numeric",
-    month: "long",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/Istanbul", // replace with your desired timezone
-  };
-
-  const formatter = new Intl.DateTimeFormat("tr-TR", options);
-  const dateString = formatter.format(new Date());
+  moment.locale("tr");
+  const day = moment().tz("Europe/Istanbul").format("ddd");
+  const dateString = moment().tz("Europe/Istanbul").format("DD MMMM, HH:mm");
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
