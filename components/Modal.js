@@ -70,12 +70,13 @@ const Modal = ({ onClose }) => {
             }}
           />
         </div>
-        {/* <div onClick={handleDocumentClick}>
-          <MyDocument />
-        </div> */}
-        {/* <div>
+        <div style={{ display: "flex" }}>
+          <MyDocument onClick={handleDocumentClick} />
+          <MyOtherDocument onClick={handleFeedbackClick} />
+        </div>
+        <div>
           <Footer />
-        </div> */}
+        </div>
       </div>
       {isNewModalOpen && <CvModal onClose={handleCloseNewModal} />}
       {isFeedbackModalOpen && (
