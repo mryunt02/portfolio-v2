@@ -8,9 +8,12 @@ import vector from "/images/vector-intelligent-object-2.svg";
 import three from "/images/three.png";
 import Footer from "./Footer";
 import CvModal from "./CvModal";
+import FeedbackModal from "./FeedbackModal";
+import MyOtherDocument from "./MyOtherDocument";
 
 const Modal = ({ onClose }) => {
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
   const handleDocumentClick = () => {
     setIsNewModalOpen(true);
@@ -18,6 +21,12 @@ const Modal = ({ onClose }) => {
 
   const handleCloseNewModal = () => {
     setIsNewModalOpen(false);
+  };
+  const handleCloseFeedbackModal = () => {
+    setIsFeedbackModalOpen(false);
+  };
+  const handleFeedbackClick = () => {
+    setIsFeedbackModalOpen(true);
   };
 
   return (
@@ -30,8 +39,9 @@ const Modal = ({ onClose }) => {
           <div className={styles.lastuse}>
             <LastUse />
           </div>
-          <div onClick={handleDocumentClick}>
-            <MyDocument />
+          <div style={{ display: "flex" }}>
+            <MyDocument onClick={handleDocumentClick} />
+            <MyOtherDocument onClick={handleFeedbackClick} />
           </div>
         </div>
       </div>
@@ -60,14 +70,17 @@ const Modal = ({ onClose }) => {
             }}
           />
         </div>
-        <div onClick={handleDocumentClick}>
+        {/* <div onClick={handleDocumentClick}>
           <MyDocument />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Footer />
-        </div>
+        </div> */}
       </div>
       {isNewModalOpen && <CvModal onClose={handleCloseNewModal} />}
+      {isFeedbackModalOpen && (
+        <FeedbackModal onClose={handleCloseFeedbackModal} />
+      )}
     </>
   );
 };
