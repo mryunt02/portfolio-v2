@@ -26,17 +26,25 @@ const FeedbackModal = ({ onClose }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://formspree.io/f/mqkroyav", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      const result = await response.json();
-      setMessage("Mesajınız başarılı bir şekilde gönderildi...");
+      if (response.ok) {
+        setMessage("Mesajınız başarılı bir şekilde gönderildi...");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        }); // Reset form data
+      } else {
+        throw new Error("Form submission failed");
+      }
     } catch (error) {
-      setMessage("Mesaj gönderilirken bir hata oluştu...");
+      setMessage("Mesaj gönderirken bir hata oluştu");
     } finally {
       setIsLoading(false);
     }
